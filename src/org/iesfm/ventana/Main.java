@@ -6,37 +6,38 @@ import java.awt.*;
 public class Main {
     public static void main(String[] args) {
         JFrame f = new JFrame();
-        f.setSize(400, 400);
+        f.setBounds(10, 10, 2000, 300);
         f.setVisible(true);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // Este es el panel principal
         JPanel mainPanel = new JPanel();
-        mainPanel.setBackground(Color.yellow);
-        // CREAR UN FORMULARIO
-        //Peticion
-        JLabel nameLabel = new JLabel("Usuario:");
-        mainPanel.add(nameLabel);
-        //Introduccion de texto
+        mainPanel.setBackground(Color.BLACK);
+
+        JPanel primaryPanel = new JPanel();
+        primaryPanel.setBounds(0, 0, 100, 100);
+        primaryPanel.setBackground(Color.RED);
+        JLabel nameLabel = new JLabel("Nombre:");
+        primaryPanel.add(nameLabel);
         JTextField nameText = new JTextField(16);
-        mainPanel.add(nameText);
-        //Boton de aceptar
-        JButton acceptButton = new JButton("Aceptar");
-        mainPanel.add(acceptButton);
+        primaryPanel.add(nameText);
+        JButton nameButton = new JButton("Aceptar");
+        primaryPanel.add(nameButton);
 
         JPanel secondPanel = new JPanel();
-
+        secondPanel.setBounds(200, 0, 100,100);
+        secondPanel.setBackground(Color.YELLOW);
         JLabel surNameLabel = new JLabel("Apellido:");
         secondPanel.add(surNameLabel);
-
-        TextField surNameText = new TextField(16);
+        JTextField surNameText = new JTextField(16);
         secondPanel.add(surNameText);
+        JButton surButton = new JButton("Aceptar");
+        secondPanel.add(surButton);
 
-        secondPanel.setBackground(Color.cyan);
+        mainPanel.add(primaryPanel);
+        mainPanel.add(secondPanel);
 
-        f.add(mainPanel, BorderLayout.CENTER);
-        f.add(secondPanel, BorderLayout.PAGE_END);
-        f.setLayout(new GridLayout(2, 2));
+        f.setContentPane(mainPanel);
         f.repaint();
         f.revalidate();
 
