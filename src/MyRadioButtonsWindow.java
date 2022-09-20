@@ -9,8 +9,10 @@ public class MyRadioButtonsWindow {
         windowRadioButton.setBounds(50, 50, 350, 600);
         windowRadioButton.setVisible(true);
         windowRadioButton.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
         JPanel mainPanel = new JPanel();
         mainPanel.setBackground(Color.gray);
+
         ButtonGroup buttonGroup = new ButtonGroup();
         JRadioButton radioButton1 = new JRadioButton("Linux");
         radioButton1.setActionCommand("Linux");
@@ -21,8 +23,10 @@ public class MyRadioButtonsWindow {
         buttonGroup.add(radioButton1);
         buttonGroup.add(radioButton2);
         buttonGroup.add(radioButton3);
+
         JLabel imageLabel = new JLabel();
         imageLabel.setIcon(new ImageIcon("Linux.png"));
+
         JButton button = new JButton("Aceptar");
         button.addActionListener(new ActionListener() {
             @Override
@@ -31,7 +35,6 @@ public class MyRadioButtonsWindow {
                 JOptionPane.showMessageDialog(windowRadioButton, "Has seleccionado " + selected);
 
                 imageLabel.setIcon(new ImageIcon(selected + ".png"));
-
             }
         });
 
