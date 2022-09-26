@@ -23,7 +23,6 @@ public class MyTitledBorderWindow {
         searchPanel.add(radioButton1);
         searchPanel.add(radioButton2);
 
-
         mainPanel.add(searchPanel);
         windowTitledBorder.setContentPane(mainPanel);
         windowTitledBorder.repaint();
