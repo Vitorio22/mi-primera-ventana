@@ -8,7 +8,7 @@ public class GridLayout {
 
         JFrame windowGridLayout = new JFrame();
         windowGridLayout.setTitle("Calculadora");
-        windowGridLayout.setBounds(50, 50, 500, 400);
+        windowGridLayout.setBounds(10, 10, 300, 500);
         windowGridLayout.setVisible(true);
         windowGridLayout.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -16,12 +16,16 @@ public class GridLayout {
         mainPanel.setLayout(new BorderLayout( 10, 10));
         mainPanel.setBorder(BorderFactory.createEmptyBorder(10, 0, 0,0));
 
+        Font font = new Font("Arial", Font.BOLD, 45);
+
         JPanel panel1 = new JPanel();
         panel1.setLayout(new BorderLayout(10, 10));
-        panel1.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        panel1.setBorder(BorderFactory.createEmptyBorder(10, 5, 5, 5));
         JTextField textField = new JTextField("0", 20);
         textField.setPreferredSize(new Dimension(80, 80));
+        textField.setFont(font);
         textField.setLayout(new BorderLayout());
+        textField.setHorizontalAlignment(JTextField.RIGHT);
 
         JPanel panel2 = new JPanel();
         panel2.setLayout(new java.awt.GridLayout(4, 4, 10, 10));
@@ -30,6 +34,8 @@ public class GridLayout {
         JButton button3 = new JButton("9");
         JButton button4 = new JButton("DEL");
         button4.setBackground(Color.BLUE);
+        button4.setForeground(Color.WHITE);
+        button4.setBackground(new Color(29,127,135));
         JButton button5 = new JButton("4");
         JButton button6 = new JButton("5");
         JButton button7 = new JButton("6");
@@ -47,9 +53,11 @@ public class GridLayout {
         panel3.setLayout(new java.awt.GridLayout(1,2,10,10));
         panel3.setPreferredSize(new Dimension(50, 50));
         JButton button17 = new JButton("RESET");
-        button17.setBackground(Color.BLUE);
+        button17.setBackground(new Color(29,127,135));
+        button17.setForeground(Color.WHITE);
         JButton button18 = new JButton("=");
-        button18.setBackground(Color.RED);
+        button18.setBackground(new Color(207,83,29));
+        button18.setForeground(Color.WHITE);
 
         panel1.add(textField);
         panel2.add(button1);
