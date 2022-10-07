@@ -127,7 +127,6 @@ public class GridBagLayoutBuilder {
                 new Insets(1, 1, 1, 1), 0, 0);
         mainPanel.add(buttonSubmit, constraintsButtonSubmit);
 
-
         windowGridBagLayout.setContentPane(mainPanel);
         windowGridBagLayout.revalidate();
         windowGridBagLayout.repaint();
