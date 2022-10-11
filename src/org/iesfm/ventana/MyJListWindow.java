@@ -1,43 +1,77 @@
 package org.iesfm.ventana;
 
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
-public class MyJListWindow {
+public class MyJListWindow extends JFrame {
+
+    private static JPanel mainPanel;
+    private static JPanel northPanel;
+    private static JLabel labelJList;
+    private static JPanel centerPanel;
+    private static JPanel centerPanelNorth;
+    private static JTextField text;
+    private static JButton agregar;
+    private static JList<String> peopleList;
+    private static DefaultListModel<String> model;
+    private static JScrollPane scrollPane;
+    private static JPanel centerPanelSouth;
+    private static JButton button2;
+    private static JButton button3;
+    private static JPanel panelSouth;
+    private static JLabel label;
+
+    public MyJListWindow() throws HeadlessException {
+        this.setBounds(10,10,350,400);
+        this.setVisible(true);
+        this.setResizable(false);
+        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+    }
+
     public static void main(String[] args) {
 
         JFrame f = new JFrame("CoDejaVu : JList");
-        f.setBounds(10,10,350,400);
-        f.setVisible(true);
-        f.setResizable(false);
-        f.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-        JPanel mainPanel = new JPanel();
+
+        mainPanel = new JPanel();
         mainPanel.setLayout(new BorderLayout(10, 10));
         mainPanel.setBorder(BorderFactory.createEmptyBorder(10,0,0,0 ));
-
-        JPanel northPanel = new JPanel();
+        northPanel = new JPanel();
         northPanel.setLayout(new FlowLayout());
-        JLabel labelJList = new JLabel("JList", SwingConstants.CENTER);
+        labelJList = new JLabel("JList", SwingConstants.CENTER);
+        labelJList.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                if (e.getSource() == labelJList) {
+                    labelJList.setForeground(Color.RED);
+                }
+            }
+            @Override
+            public void mouseExited(MouseEvent e) {
+                if (e.getSource() == labelJList) {
+                    labelJList.setForeground(Color.BLACK);
+                }
+            }
+        });
         labelJList.setFont(new Font(null, Font.PLAIN, 30));
         labelJList.setBorder(BorderFactory.createLoweredBevelBorder());
         labelJList.setPreferredSize(new Dimension(250,50));
 
 
-        JPanel centerPanel = new JPanel();
+        centerPanel = new JPanel();
         centerPanel.setLayout(new BorderLayout(20,20));
-        JPanel centerPanelNorth = new JPanel();
-        JTextField text = new JTextField(19);
-        JButton agregar = new JButton("Agregar");
+        centerPanelNorth = new JPanel();
+        text = new JTextField(19);
+        agregar = new JButton("Agregar");
 
 
-
-        JList<String> peopleList = new JList<>();
-        DefaultListModel<String> model = new DefaultListModel<>();
-        JScrollPane scrollPane = new JScrollPane(peopleList);
+        peopleList = new JList<>();
+        model = new DefaultListModel<>();
+        scrollPane = new JScrollPane(peopleList);
         peopleList.setModel(model);
         agregar.addActionListener(e -> {
             if (!text.getText().isEmpty()) {
@@ -54,14 +88,28 @@ public class MyJListWindow {
         model.addElement("Laura Lopez");
         model.addElement("Victor Castillo");
         model.addElement("Vicente Sanchez");
-        JPanel centerPanelSouth = new JPanel();
-        JButton button2 = new JButton("Eliminar");
+        centerPanelSouth = new JPanel();
+        button2 = new JButton("Eliminar");
         button2.addActionListener(e -> {
             int index = peopleList.getSelectedIndex();
             model.remove(index);
         });
-        JButton button3 = new JButton("Borrar Lista");
+        button3 = new JButton("Borrar Lista");
         button3.addActionListener(e -> model.removeAllElements());
+
+        panelSouth = new JPanel();
+        label = new JLabel();
+        panelSouth.setLayout(new BorderLayout(10,10));
+        panelSouth.setBorder(BorderFactory.createEmptyBorder(10,0,0,0 ));
+        panelSouth.add(label, BorderLayout.CENTER);
+        mainPanel.add(panelSouth, BorderLayout.SOUTH);
+        peopleList.addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                label.setText("Seleccionado: " + peopleList.getSelectedValue());
+            }
+        });
+
 
 
         mainPanel.add(northPanel, BorderLayout.NORTH);
